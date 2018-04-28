@@ -1,0 +1,8 @@
+* Login.vue -> Remember Me, Login, Sign Up
+* Register.vue -> Back, Sign Up
+* Navbar.vue -> Home, About
+  * Home.vue
+    * TaskList.vue
+      * TaskCard.vue -> View, Clear
+        * ViewTask.vue -> Edit, Delete, Cancel
+  * About.vue

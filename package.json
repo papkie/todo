@@ -10,6 +10,7 @@
   "dependencies": {
     "bootstrap": "^4.1.0",
     "bootstrap-vue": "^2.0.0-rc.9",
+    "firebase": "^4.13.1",
     "jquery": "^3.3.1",
     "vue": "^2.5.16"
   },
@@ -38,7 +39,9 @@
     ],
     "rules": {
       "semi": 0,
-      "import/extensions": 0
+      "import/extensions": 0,
+      "arrow-parens": 0,
+      "max-len": 0
     }
   },
   "postcss": {

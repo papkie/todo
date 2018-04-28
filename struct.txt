@@ -2,6 +2,7 @@
 * Register.vue -> Back, Sign Up
 * Navbar.vue -> Home, About
   * Home.vue
+    * NewTask.vue
     * TaskList.vue
       * TaskCard.vue -> View, Clear
         * ViewTask.vue -> Edit, Delete, Cancel

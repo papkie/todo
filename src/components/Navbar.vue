@@ -2,13 +2,13 @@
   <b-navbar toggleable variant="light">
     <b-navbar-toggle target="nav_collapse" />
     <b-navbar-brand>
-      <i class="fas fa-cube"></i>
+      <i class="fas fa-cube mb-2"></i>
     </b-navbar-brand>
 
     <b-collapse is-nav id="nav_collapse">
       <b-navbar-nav>
-        <b-nav-item>Home</b-nav-item>
-        <b-nav-item>About</b-nav-item>
+        <b-nav-item><h3>Home</h3></b-nav-item>
+        <b-nav-item><h3>About</h3></b-nav-item>
       </b-navbar-nav>
 
       <b-navbar-nav class="ml-auto">

@@ -1,8 +1,9 @@
 <template>
-  <div class="container mt-3">
+  <div class="container mb-4">
     <div class="row">
-      <div v-for="task in tasks" :key=task.id class="col-md-4 mt-5">
+      <div v-for="task in tasks" :key=task.id class="col-md-4 mt-4">
         <TaskCard class="task" :task=task />
+
       </div>
     </div>
   </div>
@@ -47,6 +48,7 @@ export default {
     box-shadow: 0 4px 4px 0 rgba(0, 162, 255, 0.445),
       0 6px 10px 0 rgba(0, 255, 85, 0.19);
   }
+  transition: 0.3s;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.445), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
 }
 </style>

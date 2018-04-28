@@ -2,7 +2,7 @@
   <div class="container mb-4">
     <div class="row">
       <div v-for="task in tasks" :key=task.id class="col-md-4 mt-4">
-        <TaskCard class="task" :task=task />
+        <TaskCard @task-removed="removeTask" class="task" :task="task" />
 
       </div>
     </div>
@@ -12,32 +12,38 @@
 <script>
 import TaskCard from '@/components/TaskCard'
 import db from '@/firebase/firebaseInit'
+import swal from 'sweetalert2'
+import firebase from 'firebase'
 
 export default {
   name: 'task-list',
+  props: ['tasks'],
   components: {
     TaskCard,
   },
 
-  data() {
-    return {
-      tasks: [],
-    }
-  },
   created() {
     db
       .collection('users')
-      .doc('alexjondiaz@gmail.com')
+      .doc(firebase.auth().currentUser.email)
       .collection('tasks')
+      .orderBy('id')
       .get()
       .then(query => {
         query.forEach(doc => {
           this.tasks.push({
             title: doc.data().title,
             desc: doc.data().desc,
+            id: doc.data().id,
           })
         })
       })
+      .catch(err => swal(err))
+  },
+  methods: {
+    removeTask(task) {
+      this.tasks.splice(this.tasks.indexOf(task))
+    },
   },
 }
 </script>

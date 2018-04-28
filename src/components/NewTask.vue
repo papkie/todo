@@ -20,14 +20,18 @@
 
 <script>
 import db from '@/firebase/firebaseInit'
+import swal from 'sweetalert2'
+import firebase from 'firebase'
 
 export default {
   name: 'new-task',
+  props: ['tasks'],
 
   data() {
     return {
       title: '',
       desc: '',
+      id: null,
     }
   },
 
@@ -36,17 +40,27 @@ export default {
       this.$root.$emit('bv::hide::modal', 'new-task')
     },
     create() {
+      const id = String(new Date().getTime())
+      const task = {
+        title: this.title,
+        desc: this.desc,
+        id,
+      }
+
       db
         .collection('users')
-        .doc('alexjondiaz@gmail.com')
+        .doc(firebase.auth().currentUser.email)
         .collection('tasks')
-        .add({
-          title: this.title,
-          desc: this.desc,
-        })
+        .doc(id)
+        .set(task)
         .then(() => {
-          this.$root.$emit('bv::hide::modal', 'new-task')
+          swal(`${this.title} successfully added!`)
+          this.$emit('new-task', task)
+          this.title = ''
+          this.desc = ''
+          this.close()
         })
+        .catch(err => swal(err))
     },
   },
 }

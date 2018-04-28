@@ -1,26 +1,23 @@
 <template>
   <div id="app">
-    <Navbar />
     <Home />
   </div>
 </template>
 
 <script>
 import Home from '@/components/Home'
-import Navbar from '@/components/Navbar'
 
 export default {
   name: 'app',
   components: {
     Home,
-    Navbar,
   },
 }
 </script>
 
 <style lang="scss">
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: 'Montserrat', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

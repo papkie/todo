@@ -3,12 +3,12 @@
     <b-form>
       <b-form-group>
         <h4>Title</h4>
-        <b-form-input v-model="title" placeholder="New year, new me!" />
+        <b-form-input v-model="newTitle" placeholder="New year, new me!" />
       </b-form-group>
 
       <b-form-group>
         <h4>Description</h4>
-        <b-form-textarea rows="5" v-model="desc" placeholder="Study, exercise and eat well everyday!" />
+        <b-form-textarea rows="5" v-model="newDesc" placeholder="Study, exercise and eat well everyday!" />
       </b-form-group>
 
       <b-button variant="success" @click="updateTask()">Update</b-button>
@@ -22,15 +22,16 @@
 <script>
 import db from '@/firebase/firebaseInit'
 import swal from 'sweetalert2'
+import firebase from 'firebase'
 
 export default {
   name: 'edit-task',
-  props: ['title', 'desc', 'id'],
+  props: ['task'],
 
   data() {
     return {
-      newTitle: this.title,
-      newDesc: this.desc,
+      newTitle: this.task.title,
+      newDesc: this.task.desc,
     }
   },
 
@@ -42,7 +43,7 @@ export default {
     updateTask() {
       swal({
         title: 'Are you sure?',
-        html: `Your task <i>${this.title}</i> is about to be updated`,
+        html: `Your task <i>${this.task.title}</i> is about to be updated`,
         type: 'info',
         showCancelButton: true,
         confirmButtonText: 'UPDATE',
@@ -50,68 +51,53 @@ export default {
         confirmButtonColor: '#5cb85c',
       }).then(result => {
         if (result.value) {
+          const updatedTask = {
+            title: this.newTitle,
+            desc: this.newDesc,
+            id: this.task.id,
+          }
           db
             .collection('users')
-            .doc('alexjondiaz@gmail.com')
+            .doc(firebase.auth().currentUser.email)
             .collection('tasks')
-            .doc(this.id)
-            .set({
-              id: this.id,
-              title: this.newTitle,
-              desc: this.newDesc,
-            })
+            .doc(this.task.id)
+            .set(updatedTask)
             .then(() => {
+              this.$emit('task-updated', updatedTask)
               swal('Your task was successfully updated!').then(result => {
                 if (result.value) {
                   this.close()
                 }
               })
             })
+            .catch(err => swal(err))
         }
       })
     },
 
     deleteTask() {
       swal({
-        title: 'Are you sure?',
-        html: `Your task <i>${this.title}</i> is about to be deleted`,
+        title: `Remove <i>${this.task.title}</i>?`,
         type: 'warning',
         showCancelButton: true,
-        confirmButtonText: 'DELETE',
+        confirmButtonText: 'REMOVE',
         cancelButtonText: 'CANCEL',
-        confirmButtonColor: '#d9534f',
+        confirmButtonColor: '#d33',
       }).then(result => {
         if (result.value) {
-          const delTask = this.title
           db
             .collection('users')
-            .doc('alexjondiaz@gmail.com')
+            .doc(firebase.auth().currentUser.email)
             .collection('tasks')
-            .doc(this.id)
+            .doc(String(this.task.id))
             .delete()
             .then(() => {
-              swal(`${delTask} was successfully deleted!`).then(result => {
-                if (result.value) {
-                  this.close()
-                }
-              })
+              this.$emit('task-removed', this.task)
+              swal(`${this.task.title} has been removed!`)
             })
+            .catch(err => swal(err))
         }
       })
-    },
-
-    createTask() {
-      db
-        .collection('users')
-        .doc('alexjondiaz@gmail.com')
-        .collection('tasks')
-        .add({
-          title: this.title,
-          desc: this.desc,
-        })
-        .then(() => {
-          this.$root.$emit('bv::hide::modal', 'edit-task')
-        })
     },
   },
 }

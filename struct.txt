@@ -5,5 +5,5 @@
     * NewTask.vue
     * TaskList.vue
       * TaskCard.vue -> View, Clear
-        * ViewTask.vue -> Edit, Delete, Cancel
+        * EditTask.vue -> Update, Delete, Cancel
   * About.vue

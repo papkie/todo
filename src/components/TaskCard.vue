@@ -1,31 +1,30 @@
 <template>
-  <div>
-    <b-card>
-      <b-card-body bg-variant="light" text-variant="dark" :title=task.title>
-        <hr>
-        <p class="card-text ">{{ task.desc }}</p>
-      </b-card-body>
+  <b-card>
+    <b-card-body bg-variant="light" text-variant="dark" :title=currentTask.title>
+      <hr>
+      <p class="card-text">{{ currentTask.desc }}</p>
+    </b-card-body>
 
-      <b-button variant="link" id="btn" @click="clearTask()">
-        <i class="fa fa-check" style="color: green" />
-      </b-button>
+    <b-button variant="link" id="btn" @click="clearTask()">
+      <i class="fa fa-check" style="color: green" />
+    </b-button>
 
-      <b-button variant="link" id="btn" @click="editTask()">
-        <i class="fa fa-cog" style="color: grey" />
-      </b-button>
+    <b-button variant="link" id="btn" @click="editTask()">
+      <i class="fa fa-cog" style="color: grey" />
+    </b-button>
 
-      <b-modal hide-footer title="Edit Task" ref="editTask" id="edit-task">
-        <EditTask :title="task.title" :desc="task.desc" :id="task.id" />
-      </b-modal>
+    <b-modal hide-footer title="Edit Task" ref="editTask" id="edit-task">
+      <EditTask @task-removed="removeTask" @task-updated="updateTask" :task="task" />
+    </b-modal>
 
-    </b-card>
-  </div>
+  </b-card>
 </template>
 
 <script>
 import EditTask from '@/components/EditTask'
 import db from '@/firebase/firebaseInit'
 import swal from 'sweetalert2'
+import firebase from 'firebase'
 
 export default {
   name: 'task-card',
@@ -33,10 +32,19 @@ export default {
   components: {
     EditTask,
   },
+  data() {
+    return {
+      currentTask: this.task,
+    }
+  },
+
   methods: {
+    updateTask(task) {
+      this.currentTask = task
+    },
     clearTask() {
       swal({
-        title: `Clear <i>${this.task.title}</i>?`,
+        title: `Clear <i>${this.currentTask.title}</i>?`,
         type: 'success',
         showCancelButton: true,
         confirmButtonText: 'YES',
@@ -46,12 +54,20 @@ export default {
         if (result.value) {
           db
             .collection('users')
-            .doc('alexjondiaz@gmail.com')
+            .doc(firebase.auth().currentUser.email)
             .collection('tasks')
-            .doc(this.task.id)
+            .doc(this.currentTask.id)
             .delete()
+            .then(() => {
+              this.$emit('task-removed', this.currentTask)
+              swal(`${this.currentTask.title} has been cleared!`)
+            })
+            .catch(err => swal(err))
         }
       })
+    },
+    removeTask(task) {
+      this.$emit('task-removed', task)
     },
     editTask() {
       this.$refs.editTask.show()

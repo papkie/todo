@@ -8,9 +8,7 @@
     </b-container>
 
     <div v-else class="mt-3">
-      <b-container v-show="about">
-        <About />
-      </b-container>
+      <About v-show="about" />
 
       <b-container v-show="home">
         <h4>Todo List</h4>
@@ -30,10 +28,12 @@
         <b-modal hide-footer id="new-task" title="New Task">
           <NewTask :tasks="tasks" @new-task="addTask" />
         </b-modal>
-
       </b-container>
+
       <TaskList v-show="home" :tasks="tasks" :search="search" class="mt-3" />
+
     </div>
+
   </div>
 </template>
 
@@ -94,8 +94,8 @@ export default {
       this.email = firebase.auth().currentUser.email
     },
     userLogout() {
-      this.isLoggedIn = false
       this.tasks = []
+      this.isLoggedIn = false
       this.email = null
     },
     addTask(task) {

@@ -6,11 +6,11 @@
     </b-card-body>
 
     <b-button variant="link" id="btn" @click.prevent="clearTask()">
-      <i class="fa fa-check" style="color: green" />
+      <i class="fa fa-check glow" style="color: green" />
     </b-button>
 
     <b-button variant="link" id="btn" @click.prevent="editTask()">
-      <i class="fa fa-cog" style="color: grey" />
+      <i class="fas fa-cog spin" style="color: grey" />
     </b-button>
 
     <b-modal hide-footer title="Edit Task" ref="editTask" id="edit-task">
@@ -88,6 +88,25 @@ export default {
   position: relative;
   left: 10px;
   margin: -5px;
+}
+
+.glow {
+  transition: opacity 0.5s ease;
+  opacity: 1;
+
+  &:hover {
+    transition: opacity 0.5s ease;
+    opacity: 0.6;
+  }
+}
+
+.spin {
+  transition: ease-out 0.3s;
+  &:hover {
+    animation-direction: alternate;
+    transform: rotate(90deg);
+    transition: ease 0.5s;
+  }
 }
 </style>
 

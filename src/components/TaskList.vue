@@ -60,7 +60,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .task {
   &:hover {
     box-shadow: 0 4px 4px 0 rgba(0, 162, 255, 0.445),

@@ -62,7 +62,7 @@ export default {
             .delete()
             .then(() => {
               this.$emit('task-removed', this.currentTask)
-              swal(`${this.currentTask.title} has been cleared!`)
+              swal(`<i>${this.currentTask.title}</i> has been cleared!`)
             })
             .catch(err => swal(err))
         }

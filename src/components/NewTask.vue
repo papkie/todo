@@ -54,7 +54,7 @@ export default {
         .doc(id)
         .set(task)
         .then(() => {
-          swal(`${this.title} successfully added!`)
+          swal(`<i>${this.title}</i> successfully added!`)
           this.$emit('new-task', task)
           this.title = ''
           this.desc = ''

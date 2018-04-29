@@ -1,11 +1,11 @@
 <template>
   <b-container class="mb-4">
-    <b-row>
-      <div v-for="task in tasks" :key=task.id class="col-md-4 mt-4">
+    <b-row v-if="ready">
+      <div v-for="task in filteredSearch" :key=task.id class="col-md-4 mt-4">
         <TaskCard @task-removed="removeTask" class="task" :task="task" />
-
       </div>
     </b-row>
+    <div v-else class="spin" />
   </b-container>
 </template>
 
@@ -17,11 +17,16 @@ import firebase from 'firebase'
 
 export default {
   name: 'task-list',
-  props: ['tasks'],
+  props: ['tasks', 'search'],
   components: {
     TaskCard,
   },
-
+  data() {
+    return {
+      taskList: this.tasks,
+      ready: false,
+    }
+  },
   created() {
     db
       .collection('users')
@@ -31,18 +36,25 @@ export default {
       .get()
       .then(query => {
         query.forEach(doc => {
-          this.tasks.push({
+          this.taskList.push({
             title: doc.data().title,
             desc: doc.data().desc,
             id: doc.data().id,
           })
         })
+        this.ready = true
+        this.$emit('updated-list', this.taskList)
       })
       .catch(err => swal(err))
   },
+  computed: {
+    filteredSearch() {
+      return this.taskList.filter(task => task.title.toLowerCase().includes(this.search.toLowerCase()))
+    },
+  },
   methods: {
     removeTask(task) {
-      this.tasks.splice(this.tasks.indexOf(task), 1)
+      this.taskList.splice(this.taskList.indexOf(task), 1)
     },
   },
 }
@@ -56,5 +68,25 @@ export default {
   }
   transition: 0.3s;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.445), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+.spin::before {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 45%;
+  height: 75px;
+  width: 75px;
+  border-radius: 50%;
+  border-top: 2.35px solid rgba(98, 122, 255, 0.582);
+  border-right: 2.35px solid transparent;
+  animation: spinner 0.7s linear infinite;
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
 }
 </style>

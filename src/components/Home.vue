@@ -15,17 +15,24 @@
       <b-container v-show="home">
         <h4>Todo List</h4>
         <hr class="my-2">
-        <b-button v-b-modal.new-task variant="primary" class="mt-2 shadowEffect">
-          New Task
-          <i class="fa fa-plus ml-1" />
-        </b-button>
+        <b-row class="mt-3">
+          <b-button v-b-modal.new-task variant="primary" class="ml-3 shadowEffect">
+            New Task
+            <i class="fa fa-plus ml-1" />
+          </b-button>
+
+          <b-col sm="3" id="search">
+            <b-form-input type="search" size="md" placeholder="Search" v-model="search" />
+          </b-col>
+
+        </b-row>
 
         <b-modal hide-footer id="new-task" title="New Task">
           <NewTask :tasks="tasks" @new-task="addTask" />
         </b-modal>
 
       </b-container>
-      <TaskList v-show="home" :tasks="tasks" />
+      <TaskList v-show="home" :tasks="tasks" :search="search" class="mt-5" />
     </div>
   </div>
 </template>
@@ -53,6 +60,7 @@ export default {
     return {
       tasks: [],
       email: null,
+      search: '',
       isLoggedIn: true,
       ready: false,
       signup: false,

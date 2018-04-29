@@ -2,7 +2,7 @@
   <b-navbar toggleable variant="light">
     <b-navbar-toggle v-if="isLoggedIn" target="nav_collapse" />
     <b-navbar-brand>
-      <i class="fas fa-cube mb-2"></i>
+      <i class="fas fa-cube mb-2" />
     </b-navbar-brand>
 
     <b-collapse v-if="isLoggedIn" is-nav id="nav_collapse">

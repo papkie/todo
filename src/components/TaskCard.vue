@@ -1,7 +1,7 @@
 <template>
   <b-card>
     <b-card-body bg-variant="light" text-variant="dark" :title=currentTask.title>
-      <hr v-if="currentTask.desc.length > 0">
+      <hr v-if="currentTask.desc">
       <p class="card-text">{{ currentTask.desc }}</p>
     </b-card-body>
 
@@ -22,8 +22,8 @@
 
 <script>
 import EditTask from '@/components/EditTask'
-import db from '@/firebase/firebaseInit'
 import swal from 'sweetalert2'
+import db from '@/firebase/firebaseInit'
 import firebase from 'firebase'
 
 export default {
@@ -49,9 +49,9 @@ export default {
         showCancelButton: true,
         buttonsStyling: false,
         confirmButtonText: 'CLEAR',
-        confirmButtonClass: 'btn btn-success',
+        confirmButtonClass: 'btn btn-success shadowEffect',
         cancelButtonText: 'CANCEL',
-        cancelButtonClass: 'btn btn-outline-dark ml-3',
+        cancelButtonClass: 'btn btn-outline-dark ml-3 shadowEffect',
       }).then(result => {
         if (result.value) {
           db
@@ -62,7 +62,12 @@ export default {
             .delete()
             .then(() => {
               this.$emit('task-removed', this.currentTask)
-              swal(`<i>${this.currentTask.title}</i> has been cleared!`)
+              swal({
+                type: 'success',
+                title: `<i>${this.currentTask.title}</i> has been cleared!`,
+                buttonsStyling: false,
+                confirmButtonClass: 'btn btn-success shadowEffect p-2 px-4',
+              })
             })
             .catch(err => swal(err))
         }

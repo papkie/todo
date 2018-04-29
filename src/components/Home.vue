@@ -32,7 +32,7 @@
         </b-modal>
 
       </b-container>
-      <TaskList v-show="home" :tasks="tasks" :search="search" class="mt-5" />
+      <TaskList v-show="home" :tasks="tasks" :search="search" class="mt-3" />
     </div>
   </div>
 </template>
@@ -104,3 +104,12 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+@media screen and (max-width: 575px) {
+  #search {
+    position: relative !important;
+    top: 20px !important;
+  }
+}
+</style>

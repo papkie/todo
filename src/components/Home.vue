@@ -1,17 +1,13 @@
 <template>
   <div v-if="ready">
-    <Navbar :email="email" :isLoggedIn="isLoggedIn" @home="showHome()" @about="showAbout()" @user-logout="userLogout()" />
+    <Navbar :email="email" :isLoggedIn="isLoggedIn" @show="show" @user-logout="userLogout()" />
 
-    <div v-if="showSignUpPage">
-      <Register @loggedIn="userLogin()" @back="showSignUpPage = false" />
-    </div>
-
-    <b-container v-else-if="!isLoggedIn">
-      <Login @registered="userLogin()" @signup="showSignUpPage = true" @loggedIn="userLogin()" />
+    <b-container v-if="!isLoggedIn">
+      <Register v-if="signup" @loggedIn="userLogin()" @back="signup = false" />
+      <Login v-else @registered="userLogin()" @signup="signup = true" @loggedIn="userLogin()" />
     </b-container>
 
     <div v-else class="mt-3">
-
       <b-container v-show="about">
         <About />
       </b-container>
@@ -29,9 +25,7 @@
         </b-modal>
 
       </b-container>
-
       <TaskList v-show="home" :tasks="tasks" />
-
     </div>
   </div>
 </template>
@@ -58,10 +52,10 @@ export default {
   data() {
     return {
       tasks: [],
+      email: null,
       isLoggedIn: true,
       ready: false,
-      showSignUpPage: false,
-      email: null,
+      signup: false,
       about: false,
       home: true,
     }
@@ -77,13 +71,14 @@ export default {
     })
   },
   methods: {
-    showHome() {
-      this.about = false
-      this.home = true
-    },
-    showAbout() {
-      this.about = true
-      this.home = false
+    show(page) {
+      if (page === 'home') {
+        this.about = false
+        this.home = true
+      } else {
+        this.about = true
+        this.home = false
+      }
     },
     userLogin() {
       this.showSignUpPage = false
@@ -93,6 +88,7 @@ export default {
     userLogout() {
       this.isLoggedIn = false
       this.tasks = []
+      this.email = null
     },
     addTask(task) {
       this.tasks.push(task)

@@ -7,10 +7,10 @@
 
     <b-collapse v-if="isLoggedIn" is-nav id="nav_collapse">
       <b-navbar-nav>
-        <b-nav-item @click.prevent="homePage()">
+        <b-nav-item @click.prevent="$emit('show', 'home')">
           <h3>Home</h3>
         </b-nav-item>
-        <b-nav-item @click.prevent="aboutPage()">
+        <b-nav-item @click.prevent="$emit('show', 'about')">
           <h3>About</h3>
         </b-nav-item>
       </b-navbar-nav>
@@ -39,14 +39,6 @@ export default {
   name: 'navbar',
   props: ['isLoggedIn', 'email'],
   methods: {
-    homePage() {
-      this.$emit('home')
-    },
-
-    aboutPage() {
-      this.$emit('about')
-    },
-
     logout() {
       firebase
         .auth()

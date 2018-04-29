@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     removeTask(task) {
-      this.tasks.splice(this.tasks.indexOf(task))
+      this.tasks.splice(this.tasks.indexOf(task), 1)
     },
   },
 }

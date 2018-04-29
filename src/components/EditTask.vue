@@ -1,5 +1,4 @@
 <template>
-  <div>
     <b-form>
       <b-form-group>
         <h4>Title</h4>
@@ -16,7 +15,6 @@
       <b-button variant="outline-dark" class="shadowEffect ml-2" @click.prevent="close()">Cancel</b-button>
 
     </b-form>
-  </div>
 </template>
 
 <script>

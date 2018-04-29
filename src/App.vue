@@ -21,6 +21,11 @@ export default {
   -moz-osx-font-smoothing: grayscale;
 }
 
+body {
+  background-image: url('https://i0.wp.com/ficedu.org/wp-content/uploads/2016/07/Savin-NY-Website-Background-Web.jpg');
+  background-attachment: fixed;
+}
+
 h3 {
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: normal;

@@ -9,37 +9,16 @@
 
     <div v-else class="mt-3">
       <About v-show="about" />
-
-      <b-container v-show="home">
-        <h4>Todo List</h4>
-        <hr class="my-2">
-        <b-row class="mt-3">
-          <b-button v-b-modal.new-task variant="primary" class="ml-3 shadowEffect">
-            New Task
-            <i class="fa fa-plus ml-1" />
-          </b-button>
-
-          <b-col sm="3" id="search">
-            <b-form-input type="search" size="md" placeholder="Search" v-model="search" />
-          </b-col>
-
-        </b-row>
-
-        <b-modal hide-footer id="new-task" title="New Task">
-          <NewTask :tasks="tasks" @new-task="addTask" />
-        </b-modal>
-      </b-container>
-
-      <TaskList v-show="home" :tasks="tasks" :search="search" class="mt-3" />
-
+      <HeadView v-show="home" :search="search" :tasks="tasks" @search="filter" @new-task="addTask" class="head" />
+      <TaskList v-show="home" :tasks="tasks" :search="search" class="list" />
     </div>
 
   </div>
 </template>
 
 <script>
+import HeadView from '@/components/HeadView'
 import TaskList from '@/components/TaskList'
-import NewTask from '@/components/NewTask'
 import Login from '@/components/Login'
 import Navbar from '@/components/Navbar'
 import Register from '@/components/Register'
@@ -49,9 +28,9 @@ import firebase from 'firebase'
 export default {
   name: 'home',
   components: {
+    HeadView,
     Navbar,
     TaskList,
-    NewTask,
     Login,
     Register,
     About,
@@ -79,6 +58,9 @@ export default {
     })
   },
   methods: {
+    filter(search) {
+      this.search = search
+    },
     show(page) {
       if (page === 'home') {
         this.about = false
@@ -106,10 +88,30 @@ export default {
 </script>
 
 <style scoped>
-@media screen and (max-width: 575px) {
-  #search {
-    position: relative !important;
-    top: 20px !important;
+::-webkit-scrollbar {
+  display: none;
+}
+
+.list {
+  padding-bottom: 10px;
+}
+
+@media screen and (max-width: 1919px) {
+  .list {
+    position: relative;
+    top: 15px;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .list {
+    position: relative;
+    bottom: 70px;
+  }
+
+  .head {
+    position: relative;
+    right: 20%;
   }
 }
 </style>

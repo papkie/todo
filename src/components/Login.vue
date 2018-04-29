@@ -1,7 +1,7 @@
 <template>
   <b-form class="text-center mt-5">
 
-    <b-form class="form-group">
+    <b-form-group>
       <label for="email">
         <h5 class="display-4">
           Email
@@ -9,7 +9,7 @@
         </h5>
       </label>
       <b-form-input type="email" v-model="email" required />
-    </b-form>
+    </b-form-group>
 
     <b-form-group>
       <label for="password">
@@ -28,12 +28,14 @@
       </b-container>
 
       <b-row class="justify-content-center">
-        <b-button variant="success" @click.prevent="login()" class="shadowEffect">Sign In
+        <b-button variant="success" @click.prevent="login()" class="shadowEffect">
+          Sign In
           <i class="ml-1 fa fa-sign-in-alt" />
         </b-button>
 
-        <b-button variant="primary" class="ml-3 shadowEffect" @click.prevent="signup()">Sign Up
-          <i class="ml-1 fa fa-plus" />
+        <b-button variant="primary" class="ml-3 shadowEffect" @click.prevent="signup()">
+          Sign Up
+          <i class="ml-1 fas fa-user-plus" />
         </b-button>
       </b-row>
     </b-container>

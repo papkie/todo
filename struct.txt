@@ -2,6 +2,7 @@
 * Register.vue -> Back, Sign Up
 * Navbar.vue -> Home, About
   * Home.vue -> New Task, Search Task, Sort By
+    * HeadView.vue
     * NewTask.vue
     * TaskList.vue
       * TaskCard.vue -> View, Clear

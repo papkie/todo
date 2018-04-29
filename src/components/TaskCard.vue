@@ -1,7 +1,7 @@
 <template>
   <b-card>
     <b-card-body bg-variant="light" text-variant="dark" :title=currentTask.title>
-      <hr>
+      <hr v-if="currentTask.desc.length > 0">
       <p class="card-text">{{ currentTask.desc }}</p>
     </b-card-body>
 

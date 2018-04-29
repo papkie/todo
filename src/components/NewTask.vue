@@ -11,8 +11,8 @@
         <b-form-textarea rows="5" v-model="desc" placeholder="Study, exercise and eat well everyday!" />
       </b-form-group>
 
-      <b-button variant="success" @click="create()">Create</b-button>
-      <b-button variant="outline-dark" class="ml-2" @click="close()">Cancel</b-button>
+      <b-button variant="success" @click.prevent="create()">Create</b-button>
+      <b-button variant="outline-dark" class="ml-2" @click.prevent="close()">Cancel</b-button>
 
     </b-form>
   </div>

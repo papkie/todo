@@ -16,9 +16,22 @@ export default {
 </script>
 
 <style lang="scss">
-#app {
-  font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+* {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+h3 {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: normal;
+  font-style: normal;
+}
+
+.shadowEffect {
+  &:hover {
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.075),
+      0 6px 10px 0 rgba(0, 0, 0, 0.19);
+  }
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.445), 0 3px 3px 0 rgba(0, 0, 0, 0.19);
 }
 </style>

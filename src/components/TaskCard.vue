@@ -5,11 +5,11 @@
       <p class="card-text">{{ currentTask.desc }}</p>
     </b-card-body>
 
-    <b-button variant="link" id="btn" @click="clearTask()">
+    <b-button variant="link" id="btn" @click.prevent="clearTask()">
       <i class="fa fa-check" style="color: green" />
     </b-button>
 
-    <b-button variant="link" id="btn" @click="editTask()">
+    <b-button variant="link" id="btn" @click.prevent="editTask()">
       <i class="fa fa-cog" style="color: grey" />
     </b-button>
 
@@ -47,9 +47,11 @@ export default {
         title: `Clear <i>${this.currentTask.title}</i>?`,
         type: 'success',
         showCancelButton: true,
-        confirmButtonText: 'YES',
+        buttonsStyling: false,
+        confirmButtonText: 'CLEAR',
+        confirmButtonClass: 'btn btn-success',
         cancelButtonText: 'CANCEL',
-        confirmButtonColor: '#5cb85c',
+        cancelButtonClass: 'btn btn-outline-dark ml-3',
       }).then(result => {
         if (result.value) {
           db

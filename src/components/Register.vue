@@ -1,36 +1,36 @@
 <template>
-  <div class="container mt-5">
-    <form class="text-center">
+  <b-container class="mt-5">
+    <b-form class="text-center">
 
-      <div class="form-group">
+      <b-form-group>
         <label for="email">
           <h5 class="display-4">
             Email
             <i class="ml-1 fa fa-envelope" />
           </h5>
         </label>
-        <input type="email" class="form-control" id="email" v-model="email" required>
+        <b-form-input type="email" v-model="email" required />
         <small class="form-text text-muted">We won't share your email, promise!</small>
-      </div>
+      </b-form-group>
 
-      <div class="form-group">
+      <b-form-group>
         <label for="password">
           <h5 class="display-4">
             Password
             <i class="ml-1 fa fa-lock" />
           </h5>
         </label>
-        <input type="password" class="form-control" id="password" v-model="password" required>
+        <b-form-input type="password" v-model="password" required />
         <small class="form-text text-muted">Make your password secure with numbers, symbols and spaces!</small>
-      </div>
+      </b-form-group>
 
-      <div class="row mt-5 justify-content-center">
-        <button class="btn btn-success" @click="createUser">Create Account</button>
-        <button class="btn btn-outline-dark ml-3 px-5" @click="back()">Back</button>
-      </div>
+      <b-row class="mt-5 justify-content-center">
+        <b-button variant="success" class="shadow" @click.prevent="createUser">Create Account</b-button>
+        <b-button variant="outline-dark" class="ml-3 px-5 shadow" @click.prevent="back()">Back</b-button>
+      </b-row>
 
-    </form>
-  </div>
+    </b-form>
+  </b-container>
 </template>
 
 <script>
@@ -53,7 +53,7 @@ export default {
       firebase
         .auth()
         .createUserWithEmailAndPassword(this.email, this.password)
-        .then(() => this.login(), err => swal(err.message))
+        .then(() => this.$emit('registered'), err => swal(err.message))
     },
     login() {
       firebase
@@ -65,8 +65,9 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .display-4 {
   font-size: 2rem;
 }
+
 </style>

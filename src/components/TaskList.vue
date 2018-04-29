@@ -1,12 +1,12 @@
 <template>
-  <div class="container mb-4">
-    <div class="row">
+  <b-container class="mb-4">
+    <b-row>
       <div v-for="task in tasks" :key=task.id class="col-md-4 mt-4">
         <TaskCard @task-removed="removeTask" class="task" :task="task" />
 
       </div>
-    </div>
-  </div>
+    </b-row>
+  </b-container>
 </template>
 
 <script>

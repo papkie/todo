@@ -1,43 +1,45 @@
 <template>
   <div class="mt-5">
-    <form class="text-center">
+    <b-form class="text-center">
 
-      <div class="form-group">
+      <b-form class="form-group">
         <label for="email">
           <h5 class="display-4">
             Email
             <i class="ml-1 fa fa-envelope" />
           </h5>
         </label>
-        <input type="email" class="form-control" v-model="email" required>
-      </div>
+        <b-form-input type="email" v-model="email" required />
+      </b-form>
 
-      <div class="form-group">
+      <b-form-group>
         <label for="password">
           <h5 class="display-4">
             Password
             <i class="ml-1 fa fa-lock" />
           </h5>
         </label>
-        <input type="password" class="form-control" v-model="password" required>
-      </div>
+        <b-form-input type="password" v-model="password" required />
+      </b-form-group>
 
-      <div id="check">
-        <label for="check">Remember me!</label>
-        <input type="checkbox" class="form-check-input" id="check" v-model="remember">
-      </div>
+      <b-container class="mt-5">
+        <b-container id="checkGroup">
+          <label id="checkLabel" for="check">Remember me</label>
+          <b-form-checkbox class="mb-4" id="check" v-model="remember" />
+        </b-container>
 
-      <div class="row mt-2 justify-content-center">
-        <button class="btn btn-success" @click="login()">Sign In
-          <i class="ml-1 fa fa-sign-in-alt" />
-        </button>
+        <b-row class="justify-content-center">
+          <b-button variant="success" @click.prevent="login()" class="shadowEffect">Sign In
+            <i class="ml-1 fa fa-sign-in-alt" />
+          </b-button>
 
-        <button class="btn btn-primary ml-3" @click="signup()">Sign Up
-          <i class="ml-1 fa fa-plus" />
-        </button>
-      </div>
+          <b-button variant="primary" class="ml-3 shadowEffect" @click.prevent="signup()">Sign Up
+            <i class="ml-1 fa fa-plus" />
+          </b-button>
+        </b-row>
+      </b-container>
 
-    </form>
+    </b-form>
   </div>
 </template>
 
@@ -82,17 +84,19 @@ export default {
 }
 </script>
 
-
-<style scoped>
+<style lang="scss" scoped>
 .display-4 {
   font-size: 2rem;
 }
-#check {
-  margin-right: 2rem;
+
+#checkGroup {
+  position: relative;
+  left: 19px;
 }
-input[type='checkbox'] {
-  transform: scale(1.5);
-  margin-top: 0.35rem;
-  margin-left: 0.9rem;
+
+#checkLabel {
+  position: relative;
+  bottom: 5px;
+  right: 10px;
 }
 </style>

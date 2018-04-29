@@ -11,9 +11,9 @@
         <b-form-textarea rows="5" v-model="newDesc" placeholder="Study, exercise and eat well everyday!" />
       </b-form-group>
 
-      <b-button variant="success" @click="updateTask()">Update</b-button>
-      <b-button variant="outline-danger" class="ml-2" @click="deleteTask()">Delete</b-button>
-      <b-button variant="outline-dark" class="ml-2" @click="close()">Cancel</b-button>
+      <b-button variant="success" class="shadowEffect" @click.prevent="updateTask()">Update</b-button>
+      <b-button variant="outline-danger" class="shadowEffect ml-2" @click.prevent="deleteTask()">Delete</b-button>
+      <b-button variant="outline-dark" class="shadowEffect ml-2" @click.prevent="close()">Cancel</b-button>
 
     </b-form>
   </div>
@@ -46,9 +46,11 @@ export default {
         html: `Your task <i>${this.task.title}</i> is about to be updated`,
         type: 'info',
         showCancelButton: true,
+        buttonsStyling: false,
         confirmButtonText: 'UPDATE',
+        confirmButtonClass: 'btn btn-primary',
         cancelButtonText: 'CANCEL',
-        confirmButtonColor: '#5cb85c',
+        cancelButtonClass: 'btn btn-outline-dark ml-3',
       }).then(result => {
         if (result.value) {
           const updatedTask = {
@@ -80,9 +82,11 @@ export default {
         title: `Remove <i>${this.task.title}</i>?`,
         type: 'warning',
         showCancelButton: true,
+        buttonsStyling: false,
         confirmButtonText: 'REMOVE',
+        confirmButtonClass: 'btn btn-danger',
+        cancelButtonClass: 'btn btn-outline-dark ml-3',
         cancelButtonText: 'CANCEL',
-        confirmButtonColor: '#d33',
       }).then(result => {
         if (result.value) {
           db

@@ -13,7 +13,7 @@
         <NewTask :tasks="tasks" @new-task="addTask" />
       </b-modal>
 
-      <b-col sm="2" id="search">
+      <b-col sm="4" md="2" id="search">
         <b-form-input type="search" size="md" placeholder="Search" v-model="search" />
       </b-col>
 

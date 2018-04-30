@@ -31,6 +31,7 @@ body {
 @media (hover: none) {
   body {
     position: relative;
+    background-attachment: fixed;
     background-position-y: -500px;
   }
 }

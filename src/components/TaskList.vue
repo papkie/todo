@@ -93,7 +93,7 @@ export default {
 
 @media screen and (max-width: 575px) {
   .spin::before {
-    left: 35%;
+    left: 42.5%;
     margin-top: 50px;
   }
 }

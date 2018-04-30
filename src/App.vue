@@ -25,7 +25,16 @@ body {
   background-image: url('https://i0.wp.com/ficedu.org/wp-content/uploads/2016/07/Savin-NY-Website-Background-Web.jpg');
   background-attachment: fixed;
   background-repeat: repeat-x;
-  background-color: rgb(120, 140, 158)
+  background-color: rgb(120, 140, 158);
+}
+
+@media (hover: none) {
+  body {
+    background-image: url('https://i0.wp.com/ficedu.org/wp-content/uploads/2016/07/Savin-NY-Website-Background-Web.jpg');
+    background-attachment: initial;
+    background-repeat: repeat-x;
+    background-color: rgb(120, 140, 158);
+  }
 }
 
 h3 {

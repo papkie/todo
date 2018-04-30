@@ -5,7 +5,7 @@
         <TaskCard @task-removed="removeTask" class="task" :task="task" />
       </div>
     </b-row>
-    <div v-else class="spin" />
+    <div v-else class="spin mt-5" />
   </b-container>
 </template>
 
@@ -70,23 +70,39 @@ export default {
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.445), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
-.spin::before {
-  content: '';
-  box-sizing: border-box;
-  position: absolute;
-  top: 50%;
-  left: 45%;
-  height: 75px;
-  width: 75px;
-  border-radius: 50%;
-  border-top: 2.35px solid rgba(98, 122, 255, 0.582);
-  border-right: 2.35px solid transparent;
-  animation: spinner 0.7s linear infinite;
-}
-
 @keyframes spinner {
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media screen and (min-width: 576px) {
+  .spin::before {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    left: 45%;
+    height: 75px;
+    width: 75px;
+    border-radius: 50%;
+    border-top: 2.35px solid rgba(98, 122, 255, 0.582);
+    border-right: 2.35px solid transparent;
+    animation: spinner 0.7s linear infinite;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .spin::before {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    left: 42.5%;
+    height: 75px;
+    width: 75px;
+    border-radius: 50%;
+    border-top: 2.35px solid rgba(98, 122, 255, 0.582);
+    border-right: 2.35px solid transparent;
+    animation: spinner 0.7s linear infinite;
   }
 }
 </style>

@@ -49,7 +49,8 @@ export default {
   },
   computed: {
     filteredSearch() {
-      return this.taskList.filter(task => task.title.toLowerCase().includes(this.search.toLowerCase()))
+      return this.taskList.filter(task =>
+        task.title.toLowerCase().includes(this.search.toLowerCase()))
     },
   },
   methods: {
@@ -76,33 +77,24 @@ export default {
   }
 }
 
-@media screen and (min-width: 576px) {
-  .spin::before {
-    content: '';
-    box-sizing: border-box;
-    position: absolute;
-    left: 45%;
-    height: 75px;
-    width: 75px;
-    border-radius: 50%;
-    border-top: 2.35px solid rgba(98, 122, 255, 0.582);
-    border-right: 2.35px solid transparent;
-    animation: spinner 0.7s linear infinite;
-  }
+.spin::before {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  margin-top: 100px;
+  left: 45%;
+  height: 75px;
+  width: 75px;
+  border-radius: 50%;
+  border-top: 2.35px solid rgba(98, 122, 255, 0.582);
+  border-right: 2.35px solid transparent;
+  animation: spinner 0.7s linear infinite;
 }
 
 @media screen and (max-width: 575px) {
   .spin::before {
-    content: '';
-    box-sizing: border-box;
-    position: absolute;
-    left: 42.5%;
-    height: 75px;
-    width: 75px;
-    border-radius: 50%;
-    border-top: 2.35px solid rgba(98, 122, 255, 0.582);
-    border-right: 2.35px solid transparent;
-    animation: spinner 0.7s linear infinite;
+    left: 35%;
+    margin-top: 50px;
   }
 }
 </style>

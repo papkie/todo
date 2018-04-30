@@ -30,7 +30,8 @@
     ]
   },
   "prettier": {
-    "semi": false
+    "semi": false,
+    "function-paren-newline": false
   },
   "eslintConfig": {
     "root": true,

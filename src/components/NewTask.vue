@@ -17,9 +17,9 @@
 </template>
 
 <script>
-import db from '@/firebase/firebaseInit'
+// import db from '@/firebase/firebaseInit'
 import swal from 'sweetalert2'
-import firebase from 'firebase'
+// import firebase from 'firebase'
 
 export default {
   name: 'new-task',
@@ -52,25 +52,25 @@ export default {
           desc: this.desc,
           id,
         }
-        db
-          .collection('users')
-          .doc(firebase.auth().currentUser.email)
-          .collection('tasks')
-          .doc(id)
-          .set(task)
-          .then(() => {
-            swal({
-              type: 'success',
-              title: `<i>${this.title}</i> successfully added!`,
-              buttonsStyling: false,
-              confirmButtonClass: 'btn btn-success p-2 px-4 shadowEffect',
-            })
-            this.$emit('new-task', task)
-            this.title = ''
-            this.desc = ''
-            this.close()
-          })
-          .catch(err => swal(err))
+        // db
+        //   .collection('users')
+        //   .doc(firebase.auth().currentUser.email)
+        //   .collection('tasks')
+        //   .doc(id)
+        //   .set(task)
+        //   .then(() => {
+        //     swal({
+        //       type: 'success',
+        //       title: `<i>${this.title}</i> successfully added!`,
+        //       buttonsStyling: false,
+        //       confirmButtonClass: 'btn btn-success p-2 px-4 shadowEffect',
+        //     })
+        //     this.$emit('new-task', task)
+        //     this.title = ''
+        //     this.desc = ''
+        //     this.close()
+        //   })
+        //   .catch(err => swal(err))
       }
     },
   },

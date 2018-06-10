@@ -11,9 +11,9 @@
 
 <script>
 import TaskCard from '@/components/TaskCard'
-import db from '@/firebase/firebaseInit'
+// import db from '@/firebase/firebaseInit'
 import swal from 'sweetalert2'
-import firebase from 'firebase'
+// import firebase from 'firebase'
 
 export default {
   name: 'task-list',
@@ -28,24 +28,24 @@ export default {
     }
   },
   created() {
-    db
-      .collection('users')
-      .doc(firebase.auth().currentUser.email)
-      .collection('tasks')
-      .orderBy('id')
-      .get()
-      .then(query => {
-        query.forEach(doc => {
-          this.taskList.push({
-            title: doc.data().title,
-            desc: doc.data().desc,
-            id: doc.data().id,
-          })
-        })
-        this.ready = true
-        this.$emit('updated-list', this.taskList)
-      })
-      .catch(err => swal(err))
+    // db
+    //   .collection('users')
+    //   .doc(firebase.auth().currentUser.email)
+    //   .collection('tasks')
+    //   .orderBy('id')
+    //   .get()
+    //   .then(query => {
+    //     query.forEach(doc => {
+    //       this.taskList.push({
+    //         title: doc.data().title,
+    //         desc: doc.data().desc,
+    //         id: doc.data().id,
+    //       })
+    //     })
+    //     this.ready = true
+    //     this.$emit('updated-list', this.taskList)
+    //   })
+    //   .catch(err => swal(err))
   },
   computed: {
     filteredSearch() {

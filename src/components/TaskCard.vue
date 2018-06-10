@@ -23,8 +23,8 @@
 <script>
 import EditTask from '@/components/EditTask'
 import swal from 'sweetalert2'
-import db from '@/firebase/firebaseInit'
-import firebase from 'firebase'
+// import db from '@/firebase/firebaseInit'
+// import firebase from 'firebase'
 
 export default {
   name: 'task-card',
@@ -54,22 +54,22 @@ export default {
         cancelButtonClass: 'btn btn-outline-dark ml-3 shadowEffect',
       }).then(result => {
         if (result.value) {
-          db
-            .collection('users')
-            .doc(firebase.auth().currentUser.email)
-            .collection('tasks')
-            .doc(this.currentTask.id)
-            .delete()
-            .then(() => {
-              this.$emit('task-removed', this.currentTask)
-              swal({
-                type: 'success',
-                title: `<i>${this.currentTask.title}</i> has been cleared!`,
-                buttonsStyling: false,
-                confirmButtonClass: 'btn btn-success shadowEffect p-2 px-4',
-              })
-            })
-            .catch(err => swal(err))
+          // db
+          //   .collection('users')
+          //   .doc(firebase.auth().currentUser.email)
+          //   .collection('tasks')
+          //   .doc(this.currentTask.id)
+          //   .delete()
+          //   .then(() => {
+          //     this.$emit('task-removed', this.currentTask)
+          //     swal({
+          //       type: 'success',
+          //       title: `<i>${this.currentTask.title}</i> has been cleared!`,
+          //       buttonsStyling: false,
+          //       confirmButtonClass: 'btn btn-success shadowEffect p-2 px-4',
+          //     })
+          //   })
+          //   .catch(err => swal(err))
         }
       })
     },

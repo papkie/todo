@@ -18,9 +18,9 @@
 </template>
 
 <script>
-import db from '@/firebase/firebaseInit'
+// import db from '@/firebase/firebaseInit'
 import swal from 'sweetalert2'
-import firebase from 'firebase'
+// import firebase from 'firebase'
 
 export default {
   name: 'edit-task',
@@ -56,21 +56,21 @@ export default {
             desc: this.newDesc,
             id: this.task.id,
           }
-          db
-            .collection('users')
-            .doc(firebase.auth().currentUser.email)
-            .collection('tasks')
-            .doc(this.task.id)
-            .set(updatedTask)
-            .then(() => {
-              this.$emit('task-updated', updatedTask)
-              swal('Your task was successfully updated!').then(result => {
-                if (result.value) {
-                  this.close()
-                }
-              })
-            })
-            .catch(err => swal(err))
+          // db
+          //   .collection('users')
+          //   .doc(firebase.auth().currentUser.email)
+          //   .collection('tasks')
+          //   .doc(this.task.id)
+          //   .set(updatedTask)
+          //   .then(() => {
+          //     this.$emit('task-updated', updatedTask)
+          //     swal('Your task was successfully updated!').then(result => {
+          //       if (result.value) {
+          //         this.close()
+          //       }
+          //     })
+          //   })
+          //   .catch(err => swal(err))
         }
       })
     },

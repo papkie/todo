@@ -23,7 +23,7 @@ import Login from '@/components/Login'
 import Navbar from '@/components/Navbar'
 import Register from '@/components/Register'
 import About from '@/components/About'
-import firebase from 'firebase'
+// import firebase from 'firebase'
 
 export default {
   name: 'home',
@@ -48,14 +48,14 @@ export default {
     }
   },
   created() {
-    firebase.auth().onAuthStateChanged(user => {
-      if (!user) {
-        this.isLoggedIn = false
-      } else {
-        this.userLogin()
-      }
+    // firebase.auth().onAuthStateChanged(user => {
+    //   if (!user) {
+    //     this.isLoggedIn = false
+    //   } else {
+    //     this.userLogin()
+    //   }
       this.ready = true
-    })
+    // })
   },
   methods: {
     filter(search) {
